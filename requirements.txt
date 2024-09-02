@@ -1,0 +1,5 @@
+Flask
+speechrecognition
+scikit-learn
+pyaudio
+pyttsx3
