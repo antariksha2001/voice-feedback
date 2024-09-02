@@ -3,15 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voice Command Recognition</title>
+    <title>Voice Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h2>Voice Command Recognition</h2>
-    <form method="post">
-        <button type="submit">Say Something</button>
-    </form>
-    {% if result %}
-        <h3>Result: {{ result }}</h3>
-    {% endif %}
+    <h1>Voice Assistant</h1>
+    <p>Click the button below and speak to ask for the time or date.</p>
+    <button onclick="startVoiceCommand()">Speak</button>
+    
+    <p id="response"></p>
+
+    <script>
+        function startVoiceCommand() {
+            fetch('/voice-command')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').textContent = data.response;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
 </body>
 </html>
